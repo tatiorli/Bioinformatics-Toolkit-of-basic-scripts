@@ -14,22 +14,22 @@ if (!$inputfile){
   print 
 "\n##### N50 Program - version 1.1 (c) 2014 Tatiana Orli #####
 
-Welcome to N50 program. It calculates N50 or any other N-value according to the user's choice,
-using a multiple sequence FASTA file as an input. In addition to the N-value, it provides the following infomation: 
+Welcome to N50 calculator program. It calculates N50 or any other N-value according to the user's choice,
+using a multiple sequence FASTA file (assembly) as an input. In addition to the N-value, it provides the following infomation: 
 total number of bases, number of contigs, average number of bases per contig, longest contig and shortest contig.
 
 Usage:
 
-N50Program.pl [-i inputfile] [-o outputfile] [-N integer] 
+N50Calculator.pl [-i inputfile] [-o outputfile] [-N integer] 
 
 Example:
 
-N50Program.pl -i my_sequences.fasta -o my_test -N 90
+N50Calculator.pl -i my_sequences_assembly.fasta -o output_file_for_statistics -N 90
 
 Options:
 The order of options is irrelevant.
 
--i		Input FASTA file, mandatory;
+-i		Input FASTA file of an assembly, not reads, mandatory;
 -o		Output file (optional)
 -N		[user's N-value]: default = 25, 50 and 75
 -help or -h	[show this parameter list]
@@ -41,27 +41,28 @@ The order of options is irrelevant.
 ### print Help
 my $help_print = "\n##### N50 Program - version 1.1 (c) 2014 Tatiana Orli #####
 
-Welcome to N50 program. It calculates N50 or any other N-value according to the user's choice,
-using FASTA file as input sequences. In addition to the N-value, it provides the following infomation: 
+Welcome to N50 calculator program. It calculates N50 or any other N-value according to the user's choice,
+using a multiple sequence FASTA file (assembly) as an input. In addition to the N-value, it provides the following infomation: 
 total number of bases, number of contigs, average number of bases per contig, longest contig and shortest contig.
 
 Usage:
 
-N50Program.pl [-i inputfile] [-o outputfile] [-N integer] 
+N50Calculator.pl [-i inputfile] [-o outputfile] [-N integer] 
 
 Example:
 
-N50Program.pl -i my_sequences.fasta -o my_test -N 90
+N50Calculator.pl -i my_sequences_assembly.fasta -o output_file_for_statistics -N 90
 
 Options:
 The order of options is irrelevant.
 
--i		Input FASTA file, mandatory;
+-i		Input FASTA file of an assembly, not reads, mandatory;
 -o		Output file (optional)
 -N		[user's N-value]: default = 25, 50 and 75
 -help or -h	[show this parameter list]
 
 \n";
+
 ### Get command line options
 if ($help){
     print "$help_print";
@@ -94,7 +95,7 @@ while (my $one_contig = <INPUTFILE>){
   $total_count += $number_bases;
 }
 #
-# Now all sequences were read, can compute statistics
+# Now that all sequences were read, can compute statistics
 #
 $/ = $old_delimiter;  
 close(INPUTFILE);
@@ -135,7 +136,7 @@ if ($average =~ /(\d+\.\d{0,2}).*/){
   $average = $1;
 }
 
-# get the longest and shortest sequences
+# Get the longest and shortest sequences
 my $max = shift(@sorted_sizes);
 my $longest = "Longest contig = $max";
 	
