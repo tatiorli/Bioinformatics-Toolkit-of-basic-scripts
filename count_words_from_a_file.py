@@ -1,10 +1,9 @@
-# Python Bootcamp - Tatiana Orli Sandberg Raileanu
+# Python - Tatiana Orli Sandberg Raileanu
 # 29-10-2021
-# Exercise 37: Chapter 9 - Dictionary
-# Create a script called count_words_from_a_file.py that given a file with words and spaces and newlines only, count how many times each word appears.
+# This script expects a given a file with words and spaces and newlines only, it will count how many times each word appears.
 
 # Initialize variables - dictionary
-from collections import defaultdict # You can read about how this module works in detail here: https://www.geeksforgeeks.org/defaultdict-in-python/
+from collections import defaultdict 
 import sys
 
 # Warn user to give the input file
@@ -13,7 +12,7 @@ if len(sys.argv) > 1:
     print("Welcome to the word counter program (from a file). The inserted file contains the following words in it:")
 else:
     print("Please provide this script with a file to be analyzed.")
-    print("Usage: python tatianaorli_count_words_from_a_file.py [inputfile name] \n\n")
+    print("Usage: python count_words_from_a_file.py [inputfile name] \n\n")
 
 # Initialize count
 count = defaultdict(int)
