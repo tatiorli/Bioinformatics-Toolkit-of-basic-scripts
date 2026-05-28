@@ -1,0 +1,14 @@
+#!/bin/bash
+#BSUB -q new-short
+#BSUB -J makeblastdb
+#BSUB -o output-%J.o
+#BSUB -e error-%J.e
+#BSUB -R "rusage[mem=64000]"
+
+# In order to run a blast to characterize reads, first convert fastq of reads to fasta, then: 
+cd /home/labs/straussman/tatianas/rna-seq/sent_samples/pipeline/blast_results/join
+module load BLAST/2.11.0-Linux_x86_64
+
+##### Command Line:
+# Make a blast indexed dataset with makeblastdb
+makeblastdb -in kyna_unique_only_bacteria.fasta -dbtype nucl
